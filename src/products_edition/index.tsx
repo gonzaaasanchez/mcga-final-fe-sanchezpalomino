@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './products_edition.css';
 
@@ -11,8 +12,10 @@ const ProductDetailsPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const navigate = useNavigate();
+
     const handleBack = () => {
-        // Handle cancel action
+        navigate(-1);
     };
 
     const handleDelete = () => {
