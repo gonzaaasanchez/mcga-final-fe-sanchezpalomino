@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import './products_edition.css';
-import { Product } from '../products/types';
 
 
 const ProductDetailsPage: React.FC = () => {
@@ -10,6 +9,7 @@ const ProductDetailsPage: React.FC = () => {
     const [description, setDescription] = useState<string>('');
     const [price, setPrice] = useState<number>(0);
     const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleBack = () => {
         // Handle cancel action
@@ -41,65 +41,74 @@ const ProductDetailsPage: React.FC = () => {
                 console.error('Error fetching products:', error);
                 setError('Error fetching product. Please try again.');
             })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, ['']);
 
     return (
-        <div className="product-details">
-            <h2>Edit Product</h2>
-            {error && <div className="error">{error}</div>}
-            <form>
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
+        <>
+            <div className="product-details">
+                <h2>Edit Product</h2>
+                {error && <div className="error">{error}</div>}
+                {
+                    isLoading ? "Loading product..." : <form>
+                        <div className="form-group">
+                            <label htmlFor="name">Name:</label>
+                            <input
+                                type="text"
+                                id="name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
 
-                <div className="form-group">
-                    <label htmlFor="category">Category:</label>
-                    <input
-                        type="text"
-                        id="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    />
-                </div>
+                        <div className="form-group">
+                            <label htmlFor="category">Category:</label>
+                            <input
+                                type="text"
+                                id="category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            />
+                        </div>
 
-                <div className="form-group">
-                    <label htmlFor="description">Description:</label>
-                    <textarea
-                        id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </div>
+                        <div className="form-group">
+                            <label htmlFor="description">Description:</label>
+                            <textarea
+                                id="description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
 
-                <div className="form-group">
-                    <label htmlFor="price">Price:</label>
-                    <input
-                        type="number"
-                        id="price"
-                        value={price}
-                        onChange={(e) => setPrice(Number(e.target.value))}
-                    />
-                </div>
+                        <div className="form-group">
+                            <label htmlFor="price">Price:</label>
+                            <input
+                                type="number"
+                                id="price"
+                                value={price}
+                                onChange={(e) => setPrice(Number(e.target.value))}
+                            />
+                        </div>
 
-                <div className="button-group">
-                    <button type="button" onClick={handleBack}>
-                        Back
-                    </button>
-                    <button type="button" onClick={handleDelete}>
-                        Delete
-                    </button>
-                    <button type="button" onClick={handleSave}>
-                        Save
-                    </button>
-                </div>
-            </form>
-        </div>
+                        <div className="button-group">
+                            <button type="button" onClick={handleBack}>
+                                Back
+                            </button>
+                            <button type="button" onClick={handleDelete}>
+                                Delete
+                            </button>
+                            <button type="button" onClick={handleSave}>
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                }
+
+            </div>
+        </>
+
     );
 };
 
