@@ -37,15 +37,20 @@ strong {
 }
 
 .button:hover {
-    filter: drop-shadow(0 0 2em #8ce146aa);
+  filter: drop-shadow(0 0 3px #8ce146aa);
+}
+
+.button:active {
+  background-color: #45a049;
 }
 
 /* Responsive layout adjustments */
 @media (min-width: 600px) {
   li {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   strong {

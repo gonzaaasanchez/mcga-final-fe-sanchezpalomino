@@ -33,6 +33,13 @@ const App: React.FC = () => {
                 <h1>Product List</h1>
                 {error && <div className="error">{error}</div>}
                 <ul>
+                    <li >
+                        <strong>Name</strong>
+                        <strong>Description</strong>
+                        <strong>Category</strong>
+                        <strong>Price</strong>
+                        <strong>Detail</strong>
+                    </li>
                     {products.map((product) => (
                         <li key={product.id}>
                             <strong>{product.name}</strong>
