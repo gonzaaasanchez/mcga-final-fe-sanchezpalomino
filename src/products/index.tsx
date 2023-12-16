@@ -33,7 +33,7 @@ const App: React.FC = () => {
             })
     }, []);
 
-    const showProductDetail = (productId: string) => {
+    const showProductEdition = (productId: string) => {
         navigate(`/product/${productId}`);
     };
 
@@ -59,8 +59,8 @@ const App: React.FC = () => {
                                 <div className="price">${product.price}</div>
                                 <div className="button-container">
                                     <button className="button"
-                                        onClick={() => showProductDetail(product.id)}>
-                                        Show Details
+                                        onClick={() => showProductEdition(product.id)}>
+                                        Show Edition
                                     </button>
                                 </div>
                             </li>

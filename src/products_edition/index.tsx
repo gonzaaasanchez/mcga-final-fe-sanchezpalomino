@@ -7,7 +7,7 @@ const ProductDetailsPage: React.FC = () => {
 
     return (
         <div>
-            <h1>Product Details</h1>
+            <h1>Product Edition</h1>
             <p>Product ID: {id}</p>
             {/* Add more details or fetch the product data from an API */}
         </div>
