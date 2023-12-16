@@ -4,6 +4,7 @@ import { Product } from './types';
 
 const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -24,7 +25,10 @@ const App: React.FC = () => {
             .catch((error) => {
                 console.error('Error fetching products:', error);
                 setError('Error fetching products. Please try again.');
-            });
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, []);
 
     return (
@@ -40,17 +44,20 @@ const App: React.FC = () => {
                         <strong>Price</strong>
                         <strong>Detail</strong>
                     </li>
-                    {products.map((product) => (
-                        <li key={product.id}>
-                            <strong>{product.name}</strong>
-                            <div className="description">{product.description}</div>
-                            <div className="category">{product.category}</div>
-                            <div className="price">${product.price}</div>
-                            <div className="button-container">
-                                <button className="button">Show Details</button>
-                            </div>
-                        </li>
-                    ))}
+                    {
+                        isLoading ? "Loading products..." : products.map((product) => (
+                            <li key={product.id}>
+                                <strong>{product.name}</strong>
+                                <div className="description">{product.description}</div>
+                                <div className="category">{product.category}</div>
+                                <div className="price">${product.price}</div>
+                                <div className="button-container">
+                                    <button className="button">Show Details</button>
+                                </div>
+                            </li>
+                        ))
+                    }
+
                 </ul>
             </div>
         </>
