@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import './App.css';
+import './products.css';
 import { Product } from './types';
 
 const App: React.FC = () => {
@@ -35,7 +35,13 @@ const App: React.FC = () => {
                 <ul>
                     {products.map((product) => (
                         <li key={product.id}>
-                            <strong>{product.description}</strong> - ${product.price}
+                            <strong>{product.name}</strong>
+                            <div className="description">{product.description}</div>
+                            <div className="category">{product.category}</div>
+                            <div className="price">${product.price}</div>
+                            <div className="button-container">
+                                <button className="button">Show Details</button>
+                            </div>
                         </li>
                     ))}
                 </ul>
