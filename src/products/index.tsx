@@ -57,12 +57,10 @@ const App: React.FC = () => {
                                 <div className="description">{product.description}</div>
                                 <div className="category">{product.category}</div>
                                 <div className="price">${product.price}</div>
-                                <div className="button-container">
-                                    <button className="button"
-                                        onClick={() => showProductEdition(product.id)}>
-                                        Show Edition
-                                    </button>
-                                </div>
+                                <button className="button"
+                                    onClick={() => showProductEdition(product.id)}>
+                                    Show Edition
+                                </button>
                             </li>
                         ))
                     }
