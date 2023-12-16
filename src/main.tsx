@@ -5,7 +5,6 @@ import App from './App';
 
 const rootElement = document.getElementById('root');
 
-// Check if the createRoot method is available (React 18+)
 if (rootElement) {
   const root = createRoot(rootElement);
   root.render(<React.StrictMode><App /></React.StrictMode>);

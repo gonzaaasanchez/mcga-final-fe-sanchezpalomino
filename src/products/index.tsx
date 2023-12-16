@@ -17,8 +17,8 @@ const App: React.FC = () => {
                 }
                 return response.json();
             })
-            .then((data) => {
-                const transformedProducts: Product[] = data.data.map((product: any) => ({
+            .then((response) => {
+                const transformedProducts: Product[] = response.data.map((product: any) => ({
                     ...product,
                     id: product._id
                 }));
