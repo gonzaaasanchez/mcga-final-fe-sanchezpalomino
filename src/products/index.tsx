@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './products.css';
 import { Product } from './types';
 
@@ -6,6 +7,7 @@ const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:3000/products')
@@ -31,6 +33,10 @@ const App: React.FC = () => {
             })
     }, []);
 
+    const showProductDetail = (productId: string) => {
+        navigate(`/product/${productId}`);
+    };
+
     return (
         <>
             <div className="app">
@@ -52,7 +58,10 @@ const App: React.FC = () => {
                                 <div className="category">{product.category}</div>
                                 <div className="price">${product.price}</div>
                                 <div className="button-container">
-                                    <button className="button">Show Details</button>
+                                    <button className="button"
+                                        onClick={() => showProductDetail(product.id)}>
+                                        Show Details
+                                    </button>
                                 </div>
                             </li>
                         ))
