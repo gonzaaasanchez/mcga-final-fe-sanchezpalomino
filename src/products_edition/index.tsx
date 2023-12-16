@@ -93,13 +93,13 @@ const ProductDetailsPage: React.FC = () => {
                         </div>
 
                         <div className="button-group">
-                            <button type="button" onClick={handleBack}>
+                            <button className="button" onClick={handleBack}>
                                 Back
                             </button>
-                            <button type="button" onClick={handleDelete}>
+                            <button className="button" onClick={handleDelete}>
                                 Delete
                             </button>
-                            <button type="button" onClick={handleSave}>
+                            <button className="button" onClick={handleSave}>
                                 Save
                             </button>
                         </div>

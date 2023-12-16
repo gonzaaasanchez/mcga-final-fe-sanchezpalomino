@@ -9,3 +9,23 @@
   color: red;
   margin-bottom: 10px;
 }
+
+.button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.button:hover {
+  filter: drop-shadow(0 0 3px #8ce146aa);
+}
+
+.button:active {
+  background-color: #45a049;
+}
