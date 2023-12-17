@@ -43,32 +43,34 @@ const App: React.FC = () => {
                 <h2>Listado de productos</h2>
                 {error && <div className="error">{error}</div>}
                 {
-                    isLoading ? "Cargando productos..." :
-                        <ul>
-                            <li >
-                                <strong>Nombre</strong>
-                                <strong>Descripción</strong>
-                                <strong>Categoría</strong>
-                                <strong>Precio</strong>
-                                <strong>Detalle</strong>
-                            </li>
-                            {
-                                products.map((product) => (
-                                    <li key={product.id}>
-                                        <strong>{product.name}</strong>
-                                        <div className="description">{product.description}</div>
-                                        <div className="category">{product.category}</div>
-                                        <div className="price">${product.price}</div>
-                                        <button className="button"
-                                            onClick={() => showProductEdition(product.id)}>
-                                            Editar
-                                        </button>
-                                    </li>
-                                ))
-                            }
-                        </ul>
+                    isLoading ? <span>Cargando productos...</span> :
+                        <>
+                            <span>Total: {products.length}</span>
+                            <ul>
+                                <li >
+                                    <strong>Nombre</strong>
+                                    <strong>Descripción</strong>
+                                    <strong>Categoría</strong>
+                                    <strong>Precio</strong>
+                                    <strong>Detalle</strong>
+                                </li>
+                                {
+                                    products.map((product) => (
+                                        <li key={product.id}>
+                                            <strong>{product.name}</strong>
+                                            <div className="description">{product.description}</div>
+                                            <div className="category">{product.category}</div>
+                                            <div className="price">${product.price}</div>
+                                            <button className="button"
+                                                onClick={() => showProductEdition(product.id)}>
+                                                Editar
+                                            </button>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </>
                 }
-
             </div>
         </>
     );

@@ -62,7 +62,7 @@ const ProductDetailsPage: React.FC = () => {
                 <h2>Editar producto</h2>
                 {error && <div className="error">{error}</div>}
                 {
-                    isLoading ? "Cargando producto..." :
+                    isLoading ? <span>Cargando producto...</span> :
                         <form onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="form-group">
