@@ -37,38 +37,60 @@ const App: React.FC = () => {
         navigate(`/product/${productId}`);
     };
 
+    const showProductCreation = () => {
+        navigate(`/product/add`);
+    };
+
     return (
         <>
             <div className="app">
                 <h2>Listado de productos</h2>
                 {error && <div className="error">{error}</div>}
+                <div>
+                    <button className="button button-success"
+                        onClick={() => showProductCreation()}>
+                        Agregar nuevo producto
+                    </button>
+                </div>
+
                 {
-                    isLoading ? <span>Cargando productos...</span> :
+                    isLoading ?
+                        <div className="information">
+                            <span>Cargando productos...</span>
+                        </div> :
                         <>
-                            <span>Total: {products.length}</span>
-                            <ul>
-                                <li >
-                                    <strong>Nombre</strong>
-                                    <strong>Categoría</strong>
-                                    <strong>Descripción</strong>
-                                    <strong>Precio</strong>
-                                    <strong>Detalle</strong>
-                                </li>
-                                {
-                                    products.map((product) => (
-                                        <li key={product.id}>
-                                            <strong>{product.name}</strong>
-                                            <div className="category">{product.category}</div>
-                                            <div className="description">{product.description}</div>
-                                            <div className="price">${product.price}</div>
-                                            <button className="button button-normal"
-                                                onClick={() => showProductEdition(product.id)}>
-                                                Editar
-                                            </button>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+
+                            {
+                                !error ?
+                                    <>
+                                        <div className="information">
+                                            <span >Total: {products.length}</span>
+                                        </div>
+                                        <ul>
+                                            <li >
+                                                <strong>Nombre</strong>
+                                                <strong>Categoría</strong>
+                                                <strong>Descripción</strong>
+                                                <strong>Precio</strong>
+                                                <strong>Detalle</strong>
+                                            </li>
+                                            {
+                                                products.map((product) => (
+                                                    <li key={product.id}>
+                                                        <strong>{product.name}</strong>
+                                                        <div className="category">{product.category}</div>
+                                                        <div className="description">{product.description}</div>
+                                                        <div className="price">${product.price}</div>
+                                                        <button className="button button-normal"
+                                                            onClick={() => showProductEdition(product.id)}>
+                                                            Editar
+                                                        </button>
+                                                    </li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </> : <></>
+                            }
                         </>
                 }
             </div>

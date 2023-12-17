@@ -4,20 +4,16 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Inputs } from './types';
 
-import './products_edition.css';
+import './products_form.css';
 
-
-const ProductDetailsPage: React.FC = () => {
+const ProductFormPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const [isAddRoute, setIsAddRoute] = useState<boolean>(false);
 
-    const [name, setName] = useState<string>('');
-    const [category, setCategory] = useState<string>('');
-    const [description, setDescription] = useState<string>('');
-    const [price, setPrice] = useState<number>(0);
     const [error, setError] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<Inputs>()
 
     const navigate = useNavigate();
 
@@ -31,9 +27,9 @@ const ProductDetailsPage: React.FC = () => {
 
     const onSubmit = (data: Inputs) => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/products/${id}`,
+        fetch(`http://localhost:3000/products${isAddRoute ? '' : `/${id}`}`,
             {
-                method: 'PUT',
+                method: isAddRoute ? 'POST' : 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -48,8 +44,8 @@ const ProductDetailsPage: React.FC = () => {
                 handleBack();
             })
             .catch((error) => {
-                console.error('Error updating:', error);
-                setError('Error al actualizar producto.');
+                console.error(isAddRoute ? 'Error creating:' : 'Error updating:', error);
+                setError(isAddRoute ? 'Error al crear producto.' : 'Error al actualizar producto.');
             })
             .finally(() => {
                 setIsLoading(false);
@@ -57,32 +53,39 @@ const ProductDetailsPage: React.FC = () => {
     };
 
     useEffect(() => {
-        fetch(`http://localhost:3000/products/${id}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((response) => {
-                setName(response.data.name || '');
-                setCategory(response.data.category || '');
-                setDescription(response.data.description || '');
-                setPrice(response.data.price || 0);
-            })
-            .catch((error) => {
-                console.error('Error fetching products:', error);
-                setError('Error al consultar producto.');
-            })
-            .finally(() => {
-                setIsLoading(false);
-            })
+        setIsAddRoute(location.pathname.endsWith('/add'));
+    }, [location.pathname]);
+
+    useEffect(() => {
+        if (!isAddRoute && id) {
+            setIsLoading(true);
+            fetch(`http://localhost:3000/products/${id}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((response) => {
+                    setValue('name', response.data.name || '');
+                    setValue('category', response.data.category || '');
+                    setValue('description', response.data.description || '');
+                    setValue('price', response.data.price || 0);
+                })
+                .catch((error) => {
+                    console.error('Error fetching products:', error);
+                    setError('Error al consultar producto.');
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                })
+        }
     }, [id]);
 
     return (
         <>
             <div className="product-details">
-                <h2>Editar producto</h2>
+                <h2>{isAddRoute ? 'Agregar producto' : 'Editar producto'}</h2>
                 {error && <div className="error">{error}</div>}
                 {
                     isLoading ? <span>Cargando producto...</span> :
@@ -105,7 +108,6 @@ const ProductDetailsPage: React.FC = () => {
                                             message: 'El nombre debe tener menos de 30 caracteres'
                                         },
                                     })}
-                                    defaultValue={name}
                                 />
                                 <span className="error">{errors.name?.message}</span>
                             </div>
@@ -127,7 +129,6 @@ const ProductDetailsPage: React.FC = () => {
                                             message: 'La categoría debe tener menos de 30 caracteres'
                                         },
                                     })}
-                                    defaultValue={category}
                                 />
                                 <span className="error">{errors.category?.message}</span>
                             </div>
@@ -149,7 +150,6 @@ const ProductDetailsPage: React.FC = () => {
                                             message: 'La descripción debe tener menos de 60 caracteres'
                                         },
                                     })}
-                                    defaultValue={description}
                                 />
                                 <span className="error">{errors.description?.message}</span>
                             </div>
@@ -167,7 +167,6 @@ const ProductDetailsPage: React.FC = () => {
                                             positiveNumber: value => value > 0 || 'El precio debe ser mayor que 0',
                                         },
                                     })}
-                                    defaultValue={price}
                                 />
                                 <span className="error">{errors.price?.message}</span>
                             </div>
@@ -176,11 +175,13 @@ const ProductDetailsPage: React.FC = () => {
                                 <button className="button" onClick={() => handleBack()}>
                                     Volver al listado
                                 </button>
-                                <button className="button button-error" onClick={() => handleDelete()}>
-                                    Borrar
-                                </button>
+                                {!isAddRoute ?
+                                    <button className="button button-error" onClick={() => handleDelete()}>
+                                        Borrar
+                                    </button> : <></>
+                                }
                                 <button className="button button-success" type="submit">
-                                    Actualizar
+                                    {isAddRoute ? 'Agregar' : 'Editar'}
                                 </button>
                             </div>
 
@@ -192,4 +193,4 @@ const ProductDetailsPage: React.FC = () => {
 };
 
 
-export default ProductDetailsPage;
+export default ProductFormPage;
