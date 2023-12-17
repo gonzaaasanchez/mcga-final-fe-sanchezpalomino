@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './header.css';
+import './syle-sheet.css';
 
 const Header = () => {
 
@@ -11,7 +11,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header-container">
+    <header className="container">
       <strong>MCGA TP Final - Sanchez Palomino</strong>
       <button
         className="login-button"

@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Header from './header';
+import Header from './header-footer/header';
+import Footer from './header-footer/footer';
 import ProductsList from './products';
 import ProductFormPage from './products_form';
 
@@ -18,10 +19,9 @@ function App() {
             <Route path="/product/add" element={<ProductFormPage />} />
           </Routes>
         </main>
+        <Footer />
       </>
     </Router>
-
-
   );
 }
 

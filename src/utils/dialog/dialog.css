@@ -11,10 +11,10 @@
 }
 
 .confirmation-dialog {
-  background: white;
   padding: 20px;
   border-radius: 8px;
   max-width: 400px;
+  background: white;
 }
 
 .confirmation-dialog-content {
@@ -27,3 +27,15 @@
   display: flex;
   gap: 10px;
 }
+
+/* @media (prefers-color-scheme: light) {
+  .confirmation-dialog {
+    background: rgb(34, 34, 34);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .confirmation-dialog {
+    background: white;
+  }
+} */
