@@ -17,7 +17,7 @@ const ProductDetailsPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const { register, handleSubmit, formState: { errors }, watch } = useForm<Inputs>()
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
 
     const navigate = useNavigate();
 
@@ -30,7 +30,32 @@ const ProductDetailsPage: React.FC = () => {
     };
 
     const onSubmit = (data: Inputs) => {
-        console.log(data)
+        setIsLoading(true);
+        console.log(JSON.stringify(data))
+        fetch(`http://localhost:3000/products/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then((response) => {
+                console.log(JSON.stringify(response))
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+            })
+            .then((_) => {
+                handleBack();
+            })
+            .catch((error) => {
+                console.error('Error updating:', error);
+                setError('Error al actualizar producto.');
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     };
 
     useEffect(() => {
@@ -42,6 +67,7 @@ const ProductDetailsPage: React.FC = () => {
                 return response.json();
             })
             .then((response) => {
+                console.log(response.data)
                 setName(response.data.name || '');
                 setCategory(response.data.category || '');
                 setDescription(response.data.description || '');
@@ -49,7 +75,7 @@ const ProductDetailsPage: React.FC = () => {
             })
             .catch((error) => {
                 console.error('Error fetching products:', error);
-                setError('Error fetching product. Please try again.');
+                setError('Error al consultar producto.');
             })
             .finally(() => {
                 setIsLoading(false);

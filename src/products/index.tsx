@@ -26,7 +26,7 @@ const App: React.FC = () => {
             })
             .catch((error) => {
                 console.error('Error fetching products:', error);
-                setError('Error fetching products. Please try again.');
+                setError('Error al consultar productos.');
             })
             .finally(() => {
                 setIsLoading(false);
@@ -49,8 +49,8 @@ const App: React.FC = () => {
                             <ul>
                                 <li >
                                     <strong>Nombre</strong>
-                                    <strong>Descripción</strong>
                                     <strong>Categoría</strong>
+                                    <strong>Descripción</strong>
                                     <strong>Precio</strong>
                                     <strong>Detalle</strong>
                                 </li>
@@ -58,8 +58,8 @@ const App: React.FC = () => {
                                     products.map((product) => (
                                         <li key={product.id}>
                                             <strong>{product.name}</strong>
-                                            <div className="description">{product.description}</div>
                                             <div className="category">{product.category}</div>
+                                            <div className="description">{product.description}</div>
                                             <div className="price">${product.price}</div>
                                             <button className="button"
                                                 onClick={() => showProductEdition(product.id)}>
