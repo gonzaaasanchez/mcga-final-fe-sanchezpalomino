@@ -40,17 +40,17 @@ const App: React.FC = () => {
     return (
         <>
             <div className="app">
-                <h2>Product List</h2>
+                <h2>Listado de productos</h2>
                 {error && <div className="error">{error}</div>}
                 {
-                    isLoading ? "Loading products..." :
+                    isLoading ? "Cargando productos..." :
                         <ul>
                             <li >
-                                <strong>Name</strong>
-                                <strong>Description</strong>
-                                <strong>Category</strong>
-                                <strong>Price</strong>
-                                <strong>Detail</strong>
+                                <strong>Nombre</strong>
+                                <strong>Descripción</strong>
+                                <strong>Categoría</strong>
+                                <strong>Precio</strong>
+                                <strong>Detalle</strong>
                             </li>
                             {
                                 products.map((product) => (
@@ -61,7 +61,7 @@ const App: React.FC = () => {
                                         <div className="price">${product.price}</div>
                                         <button className="button"
                                             onClick={() => showProductEdition(product.id)}>
-                                            Show Edition
+                                            Editar
                                         </button>
                                     </li>
                                 ))
