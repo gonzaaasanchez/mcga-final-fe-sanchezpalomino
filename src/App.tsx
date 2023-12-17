@@ -8,18 +8,18 @@ import ProductFormPage from './products_form';
 
 function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Router>
+    <Router>
+      <>
+        <Header />
+        <main>
           <Routes>
             <Route path="/" element={<ProductsList />} />
             <Route path="/product/:id" element={<ProductFormPage />} />
             <Route path="/product/add" element={<ProductFormPage />} />
           </Routes>
-        </Router>
-      </main>
-    </>
+        </main>
+      </>
+    </Router>
 
 
   );

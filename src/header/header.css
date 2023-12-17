@@ -14,3 +14,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.logout-button {
+  background-color: red;
+}
