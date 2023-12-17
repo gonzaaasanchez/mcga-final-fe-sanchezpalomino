@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { Inputs } from './types';
 
 import './products_form.css';
+import ConfirmationDialog from '../utils/dialog';
+
 
 const ProductFormPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -12,6 +14,7 @@ const ProductFormPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<Inputs>()
+    const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -20,8 +23,18 @@ const ProductFormPage: React.FC = () => {
     };
 
     const handleDelete = () => {
-        // Handle delete action
+        setDeleteDialogOpen(true);
     };
+
+    const handleDeleteConfirm = () => {
+        console.log('handleDeleteConfirm');
+        setDeleteDialogOpen(false);
+    }
+
+    const handleDeleteCancel = () => {
+        console.log('handleDeleteCancel');
+        setDeleteDialogOpen(false);
+    }
 
     const onSubmit = (data: Inputs) => {
         setIsLoading(true);
@@ -184,11 +197,17 @@ const ProductFormPage: React.FC = () => {
                             </div>
 
                             <div className="button-group">
-                                <button className="button" onClick={() => handleBack()}>
+                                <button
+                                    className="button"
+                                    onClick={() => handleBack()}
+                                    type="button">
                                     Volver al listado
                                 </button>
                                 {!isAddRoute ?
-                                    <button className="button button-error" onClick={() => handleDelete()}>
+                                    <button
+                                        className="button button-error"
+                                        onClick={() => handleDelete()}
+                                        type="button">
                                         Borrar
                                     </button> : <></>
                                 }
@@ -200,6 +219,16 @@ const ProductFormPage: React.FC = () => {
                         </form>
                 }
             </div>
+            {isDeleteDialogOpen && (
+                <ConfirmationDialog
+                    isOpen={isDeleteDialogOpen}
+                    title='¿Estás seguro que deseás borrar este producto?'
+                    cancelText='Cancelar'
+                    onCancel={() => handleDeleteCancel()}
+                    confirmText='Borrar'
+                    onConfirm={() => handleDeleteConfirm()}
+                />
+            )}
         </>
     );
 };
