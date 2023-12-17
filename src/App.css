@@ -11,7 +11,7 @@
 }
 
 .button {
-  background-color: #4caf50;
+  background-color: coral;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -23,9 +23,33 @@
 }
 
 .button:hover {
-  filter: drop-shadow(0 0 3px #8ce146aa);
+  filter: drop-shadow(0 0 2px #e8835e);
 }
 
 .button:active {
+  background-color: #ef622f;
+}
+
+.button-error {
+  background-color: red;
+}
+
+.button-error:hover {
+  filter: drop-shadow(0 0 2px #ff0000aa);
+}
+
+.button-error:active {
+  background-color: darkred;
+}
+
+.button-success {
+  background-color: #4caf50;
+}
+
+.button-success:hover {
+  filter: drop-shadow(0 0 2px #8ce146aa);
+}
+
+.button-success:active {
   background-color: #45a049;
 }

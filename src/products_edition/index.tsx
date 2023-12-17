@@ -176,10 +176,10 @@ const ProductDetailsPage: React.FC = () => {
                                 <button className="button" onClick={() => handleBack()}>
                                     Volver al listado
                                 </button>
-                                <button className="button" onClick={() => handleDelete()}>
+                                <button className="button button-error" onClick={() => handleDelete()}>
                                     Borrar
                                 </button>
-                                <button className="button" type="submit">
+                                <button className="button button-success" type="submit">
                                     Actualizar
                                 </button>
                             </div>

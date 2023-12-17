@@ -61,7 +61,7 @@ const App: React.FC = () => {
                                             <div className="category">{product.category}</div>
                                             <div className="description">{product.description}</div>
                                             <div className="price">${product.price}</div>
-                                            <button className="button"
+                                            <button className="button button-normal"
                                                 onClick={() => showProductEdition(product.id)}>
                                                 Editar
                                             </button>
