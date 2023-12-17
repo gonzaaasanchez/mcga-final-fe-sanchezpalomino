@@ -127,7 +127,7 @@ const ProductFormPage: React.FC = () => {
 
                             <div className="form-group">
                                 {
-                                    !isAddRoute ?
+                                    !isAddRoute && (
                                         <>
                                             <label htmlFor="pid">ID:</label>
                                             <input
@@ -138,7 +138,7 @@ const ProductFormPage: React.FC = () => {
                                                 readOnly
                                             />
                                         </>
-                                        : <></>
+                                    )
                                 }
                                 <label htmlFor="name">Nombre:</label>
                                 <input
@@ -226,13 +226,15 @@ const ProductFormPage: React.FC = () => {
                                     type="button">
                                     Volver al listado
                                 </button>
-                                {!isAddRoute ?
-                                    <button
-                                        className="button button-error"
-                                        onClick={() => handleDelete()}
-                                        type="button">
-                                        Borrar
-                                    </button> : <></>
+                                {
+                                    !isAddRoute && (
+                                        <button
+                                            className="button button-error"
+                                            onClick={() => handleDelete()}
+                                            type="button">
+                                            Borrar
+                                        </button>
+                                    )
                                 }
                                 <button className="button button-success" type="submit">
                                     {isAddRoute ? 'Agregar' : 'Editar'}

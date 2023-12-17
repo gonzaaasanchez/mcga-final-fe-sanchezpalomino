@@ -61,7 +61,7 @@ const App: React.FC = () => {
                         <>
 
                             {
-                                !error ?
+                                !error && (
                                     <>
                                         <div className="information">
                                             <span >Total: {products.length}</span>
@@ -89,7 +89,8 @@ const App: React.FC = () => {
                                                 ))
                                             }
                                         </ul>
-                                    </> : <></>
+                                    </>
+                                )
                             }
                         </>
                 }
