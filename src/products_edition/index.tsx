@@ -31,7 +31,6 @@ const ProductDetailsPage: React.FC = () => {
 
     const onSubmit = (data: Inputs) => {
         setIsLoading(true);
-        console.log(JSON.stringify(data))
         fetch(`http://localhost:3000/products/${id}`,
             {
                 method: 'PUT',
@@ -41,7 +40,6 @@ const ProductDetailsPage: React.FC = () => {
                 body: JSON.stringify(data),
             })
             .then((response) => {
-                console.log(JSON.stringify(response))
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
@@ -67,7 +65,6 @@ const ProductDetailsPage: React.FC = () => {
                 return response.json();
             })
             .then((response) => {
-                console.log(response.data)
                 setName(response.data.name || '');
                 setCategory(response.data.category || '');
                 setDescription(response.data.description || '');
@@ -177,13 +174,13 @@ const ProductDetailsPage: React.FC = () => {
 
                             <div className="button-group">
                                 <button className="button" onClick={() => handleBack()}>
-                                    Back to the list
+                                    Volver al listado
                                 </button>
                                 <button className="button" onClick={() => handleDelete()}>
-                                    Delete
+                                    Borrar
                                 </button>
                                 <button className="button" type="submit">
-                                    Save
+                                    Actualizar
                                 </button>
                             </div>
 
