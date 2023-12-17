@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Inputs } from './types';
-
-import './products_form.css';
 import ConfirmationDialog from '../utils/dialog';
-
+import './products_form.css';
 
 const ProductFormPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const [loadingMessage, setLoadingMessage] = useState<string>('Cargando');
     const [isAddRoute, setIsAddRoute] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,17 +26,40 @@ const ProductFormPage: React.FC = () => {
     };
 
     const handleDeleteConfirm = () => {
-        console.log('handleDeleteConfirm');
         setDeleteDialogOpen(false);
+        setIsLoading(true);
+        setLoadingMessage('Borrando producto...');
+        fetch(`http://localhost:3000/products/${id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+            })
+            .then((_) => {
+                handleBack();
+            })
+            .catch((error) => {
+                console.error('Error deleting product: ', error);
+                setError('Error al borrar producto.');
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }
 
     const handleDeleteCancel = () => {
-        console.log('handleDeleteCancel');
         setDeleteDialogOpen(false);
     }
 
     const onSubmit = (data: Inputs) => {
         setIsLoading(true);
+        setLoadingMessage('Guardando producto...');
         fetch(`http://localhost:3000/products${isAddRoute ? '' : `/${id}`}`,
             {
                 method: isAddRoute ? 'POST' : 'PUT',
@@ -70,6 +92,7 @@ const ProductFormPage: React.FC = () => {
     useEffect(() => {
         if (!isAddRoute && id) {
             setIsLoading(true);
+            setLoadingMessage('Cargando producto...');
             fetch(`http://localhost:3000/products/${id}`)
                 .then((response) => {
                     if (!response.ok) {
@@ -99,7 +122,7 @@ const ProductFormPage: React.FC = () => {
                 <h2>{isAddRoute ? 'Agregar producto' : 'Editar producto'}</h2>
                 {error && <div className="error">{error}</div>}
                 {
-                    isLoading ? <span>Cargando producto...</span> :
+                    isLoading ? <span>{loadingMessage}</span> :
                         <form onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="form-group">

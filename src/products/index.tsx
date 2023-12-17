@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './products.css';
 import { Product } from './types';
+import './products.css';
 
 const App: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
