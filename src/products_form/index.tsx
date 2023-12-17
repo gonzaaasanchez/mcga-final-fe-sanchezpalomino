@@ -9,10 +9,8 @@ import './products_form.css';
 const ProductFormPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [isAddRoute, setIsAddRoute] = useState<boolean>(false);
-
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<Inputs>()
 
     const navigate = useNavigate();
@@ -92,6 +90,20 @@ const ProductFormPage: React.FC = () => {
                         <form onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="form-group">
+                                {
+                                    !isAddRoute ?
+                                        <>
+                                            <label htmlFor="pid">ID:</label>
+                                            <input
+                                                type="text"
+                                                id="pid"
+                                                placeholder='ID'
+                                                value={id}
+                                                readOnly
+                                            />
+                                        </>
+                                        : <></>
+                                }
                                 <label htmlFor="name">Nombre:</label>
                                 <input
                                     type="text"
