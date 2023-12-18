@@ -57,7 +57,7 @@ const Header = () => {
         <button className="home-button" onClick={showHome}>
           🏠
         </button>
-        <div className='center'>
+        <div>
           <strong>MCGA TP Final - Sanchez Palomino</strong>
           <div className='user-info'>Usuario: { userIsLogged ? userName : 'no logueado'}</div>
         </div>
