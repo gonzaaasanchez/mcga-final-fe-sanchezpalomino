@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../utils/firebase/firebase';
-import './syle-sheet.css';
+import { cleanUserData } from '../utils/auth_helper';
 import ConfirmationDialog from '../utils/dialog';
+import './syle-sheet.css';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const Header = () => {
 
   const logout = () => {
     signOut(auth).then(() => {
+      cleanUserData();
       navigate("/");
     }).catch((error) => {
       console.log('error: ', error)
@@ -59,7 +61,7 @@ const Header = () => {
         </button>
         <div>
           <strong>MCGA TP Final - Sanchez Palomino</strong>
-          <div className='user-info'>Usuario: { userIsLogged ? userName : 'no logueado'}</div>
+          <div className='user-info'>Usuario: {userIsLogged ? userName : 'no logueado'}</div>
         </div>
         <button
           className={`login-button ${userIsLogged ? 'logout-button' : ''}`}

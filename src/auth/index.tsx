@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase/firebase';
 import { useNavigate } from 'react-router-dom'
+import ConfirmationDialog from '../utils/dialog';
+import { saveUserData } from '../utils/auth_helper';
 import '../App.css';
 import './auth.css';
-import ConfirmationDialog from '../utils/dialog';
 
 const AuthPage = () => {
     const navigate = useNavigate();
@@ -29,9 +30,10 @@ const AuthPage = () => {
         if (isLoginFlow) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    const user = userCredential.user;
-                    console.log(userCredential);
-                    console.log(user);
+                    const user: User = userCredential.user;
+                    console.log('userCredential', userCredential);
+                    console.log('refreshToken', user.refreshToken);
+                    saveUserData(user,  user.refreshToken);
                     showMenu();
                 })
                 .catch((error) => {

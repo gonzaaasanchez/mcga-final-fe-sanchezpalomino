@@ -6,6 +6,7 @@ import ProductsList from './products';
 import ProductFormPage from './products_form';
 import AuthPage from './auth';
 import ProtectedRoute from './utils/protected_route';
+
 import './App.css';
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
           <Routes>
             <Route path='/' element={<ProductsList />} />
             <Route path='/auth' element={<AuthPage />} />
-            <Route element={<ProtectedRoute userToken='asdasd' />}>
+            <Route element={<ProtectedRoute />}>
               <Route path='/product/add' element={<ProductFormPage />} />
               <Route path='/product/:id' element={<ProductFormPage />} />
             </Route>
