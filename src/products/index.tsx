@@ -43,7 +43,7 @@ const App: React.FC = () => {
 
     return (
         <>
-            <div className='app'>
+            <div className='products-container'>
                 <h2>Listado de productos</h2>
                 {error && <div className='error'>{error}</div>}
                 <div>
