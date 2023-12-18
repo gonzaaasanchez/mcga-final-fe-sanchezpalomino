@@ -20,13 +20,13 @@ const ConfirmationDialog: React.FC<{
             return null;
         }
         return (
-            <div className="confirmation-dialog-overlay">
-                <div className="confirmation-dialog">
-                    <div className="confirmation-dialog-content">
+            <div className='confirmation-dialog-overlay'>
+                <div className='confirmation-dialog'>
+                    <div className='confirmation-dialog-content'>
                         <p>{title}</p>
-                        <div className="confirmation-dialog-buttons">
-                            <button className="button button-error" onClick={() => onCancel()}>{cancelText}</button>
-                            <button className="button button-success" onClick={() => onConfirm()}>{confirmText}</button>
+                        <div className='confirmation-dialog-buttons'>
+                            <button className='button button-error' onClick={() => onCancel()}>{cancelText}</button>
+                            <button className='button button-success' onClick={() => onConfirm()}>{confirmText}</button>
                         </div>
                     </div>
                 </div>

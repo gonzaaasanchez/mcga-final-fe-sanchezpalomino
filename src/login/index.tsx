@@ -40,7 +40,7 @@ const LoginPage = () => {
                 <h2>Login</h2>
 
                 <form>
-                    <div className="form-group">
+                    <div className='form-group'>
                         <label htmlFor='email-address'>
                             Email address
                         </label>
@@ -53,7 +53,7 @@ const LoginPage = () => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
-                    <div className="form-group">
+                    <div className='form-group'>
                         <label htmlFor='password'>
                             Contraseña
                         </label>

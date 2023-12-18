@@ -15,10 +15,10 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<ProductsList />} />
-            <Route path="/product/:id" element={<ProductFormPage />} />
-            <Route path="/product/add" element={<ProductFormPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path='/' element={<ProductsList />} />
+            <Route path='/product/:id' element={<ProductFormPage />} />
+            <Route path='/product/add' element={<ProductFormPage />} />
+            <Route path='/login' element={<LoginPage />} />
           </Routes>
         </main>
         <Footer />

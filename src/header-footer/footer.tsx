@@ -6,7 +6,7 @@ const Header = () => {
 
 
   return (
-    <footer className="container footer-container">
+    <footer className='container footer-container'>
       <span>© 2023</span>
     </footer>
   );
