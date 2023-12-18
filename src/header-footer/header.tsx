@@ -19,7 +19,7 @@ const Header = () => {
     if (userIsLogged) {
       setIsLogoutDialogOpen(true);
     } else {
-      navigate('/login');
+      navigate('/auth');
     }
   };
 

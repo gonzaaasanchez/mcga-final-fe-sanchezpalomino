@@ -1,28 +1,33 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import Header from './header-footer/header';
 import Footer from './header-footer/footer';
 import ProductsList from './products';
 import ProductFormPage from './products_form';
 import LoginPage from './login';
+import ProtectedRoute from './utils/protected_route';
 import './App.css';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <>
         <Header />
         <main>
           <Routes>
             <Route path='/' element={<ProductsList />} />
-            <Route path='/product/:id' element={<ProductFormPage />} />
-            <Route path='/product/add' element={<ProductFormPage />} />
-            <Route path='/login' element={<LoginPage />} />
+            <Route path='/product/add' element={
+              <ProtectedRoute userToken={'asd'}> <ProductFormPage /> </ProtectedRoute>
+            } />
+            <Route path='/product/:id' element={
+              <ProtectedRoute userToken={'asd'}> <ProductFormPage /> </ProtectedRoute>
+            } />
+            <Route path='/auth' element={<LoginPage />} />
           </Routes>
         </main>
-        <Footer />
+        <Footer /> 
       </>
-    </Router>
+    </BrowserRouter>
   );
 }
 
