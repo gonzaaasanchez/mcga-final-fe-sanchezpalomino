@@ -3,4 +3,6 @@ export type Inputs = {
     description: String;
     category: String;
     price: number;
+    email: String;
+    password: String;
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Inputs } from './types';
+import { Inputs } from '../utils/types';
 import ConfirmationDialog from '../utils/dialog';
 import './products_form.css';
 
@@ -118,21 +118,21 @@ const ProductFormPage: React.FC = () => {
 
     return (
         <>
-            <div className="product-details">
+            <div className='product-details'>
                 <h2>{isAddRoute ? 'Agregar producto' : 'Editar producto'}</h2>
-                {error && <div className="error">{error}</div>}
+                {error && <div className='error'>{error}</div>}
                 {
                     isLoading ? <span>{loadingMessage}</span> :
                         <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <div className="form-group">
+                            <div className='form-group'>
                                 {
                                     !isAddRoute && (
                                         <>
-                                            <label htmlFor="pid">ID:</label>
+                                            <label htmlFor='pid'>ID:</label>
                                             <input
-                                                type="text"
-                                                id="pid"
+                                                type='text'
+                                                id='pid'
                                                 placeholder='ID'
                                                 value={id}
                                                 readOnly
@@ -140,12 +140,12 @@ const ProductFormPage: React.FC = () => {
                                         </>
                                     )
                                 }
-                                <label htmlFor="name">Nombre:</label>
+                                <label htmlFor='name'>Nombre:</label>
                                 <input
-                                    type="text"
-                                    id="name"
+                                    type='text'
+                                    id='name'
                                     placeholder='Nombre'
-                                    {...register("name", {
+                                    {...register('name', {
                                         required: { value: true, message: 'El nombre es requerido' },
                                         minLength: {
                                             value: 2,
@@ -157,16 +157,16 @@ const ProductFormPage: React.FC = () => {
                                         },
                                     })}
                                 />
-                                <span className="error">{errors.name?.message}</span>
+                                <span className='error'>{errors.name?.message}</span>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="category">Categoría:</label>
+                            <div className='form-group'>
+                                <label htmlFor='category'>Categoría:</label>
                                 <input
-                                    type="text"
-                                    id="category"
+                                    type='text'
+                                    id='category'
                                     placeholder='Categoría'
-                                    {...register("category", {
+                                    {...register('category', {
                                         required: { value: true, message: 'La categoría es requerida' },
                                         minLength: {
                                             value: 4,
@@ -178,16 +178,16 @@ const ProductFormPage: React.FC = () => {
                                         },
                                     })}
                                 />
-                                <span className="error">{errors.category?.message}</span>
+                                <span className='error'>{errors.category?.message}</span>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="description">Descripción:</label>
+                            <div className='form-group'>
+                                <label htmlFor='description'>Descripción:</label>
                                 <input
-                                    type="text"
-                                    id="description"
+                                    type='text'
+                                    id='description'
                                     placeholder='Descripción'
-                                    {...register("description", {
+                                    {...register('description', {
                                         required: { value: true, message: 'La descripción es requerida' },
                                         minLength: {
                                             value: 10,
@@ -199,44 +199,44 @@ const ProductFormPage: React.FC = () => {
                                         },
                                     })}
                                 />
-                                <span className="error">{errors.description?.message}</span>
+                                <span className='error'>{errors.description?.message}</span>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="price">Precio:</label>
+                            <div className='form-group'>
+                                <label htmlFor='price'>Precio:</label>
                                 <input
-                                    type="number"
-                                    step="any"
-                                    id="price"
+                                    type='number'
+                                    step='any'
+                                    id='price'
                                     placeholder='Precio'
-                                    {...register("price", {
+                                    {...register('price', {
                                         required: { value: true, message: 'El precio es requerido' },
                                         validate: {
                                             positiveNumber: value => value > 0 || 'El precio debe ser mayor que 0',
                                         },
                                     })}
                                 />
-                                <span className="error">{errors.price?.message}</span>
+                                <span className='error'>{errors.price?.message}</span>
                             </div>
 
-                            <div className="button-group">
+                            <div className='button-group'>
                                 <button
-                                    className="button"
+                                    className='button'
                                     onClick={() => handleBack()}
-                                    type="button">
+                                    type='button'>
                                     Volver al listado
                                 </button>
                                 {
                                     !isAddRoute && (
                                         <button
-                                            className="button button-error"
+                                            className='button button-error'
                                             onClick={() => handleDelete()}
-                                            type="button">
+                                            type='button'>
                                             Borrar
                                         </button>
                                     )
                                 }
-                                <button className="button button-success" type="submit">
+                                <button className='button button-success' type='submit'>
                                     {isAddRoute ? 'Agregar' : 'Editar'}
                                 </button>
                             </div>

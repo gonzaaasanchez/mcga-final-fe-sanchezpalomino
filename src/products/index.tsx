@@ -43,11 +43,11 @@ const App: React.FC = () => {
 
     return (
         <>
-            <div className="app">
+            <div className='app'>
                 <h2>Listado de productos</h2>
-                {error && <div className="error">{error}</div>}
+                {error && <div className='error'>{error}</div>}
                 <div>
-                    <button className="button button-success"
+                    <button className='button button-success'
                         onClick={() => showProductCreation()}>
                         Agregar nuevo producto
                     </button>
@@ -55,7 +55,7 @@ const App: React.FC = () => {
 
                 {
                     isLoading ?
-                        <div className="information">
+                        <div className='information'>
                             <span>Cargando productos...</span>
                         </div> :
                         <>
@@ -63,7 +63,7 @@ const App: React.FC = () => {
                             {
                                 !error && (
                                     <>
-                                        <div className="information">
+                                        <div className='information'>
                                             <span >Total: {products.length}</span>
                                         </div>
                                         <ul>
@@ -78,10 +78,10 @@ const App: React.FC = () => {
                                                 products.map((product) => (
                                                     <li key={product.id}>
                                                         <strong>{product.name}</strong>
-                                                        <div className="category">{product.category}</div>
-                                                        <div className="description">{product.description}</div>
-                                                        <div className="price">${product.price}</div>
-                                                        <button className="button button-normal"
+                                                        <div className='category'>{product.category}</div>
+                                                        <div className='description'>{product.description}</div>
+                                                        <div className='price'>${product.price}</div>
+                                                        <button className='button button-normal'
                                                             onClick={() => showProductEdition(product.id)}>
                                                             Editar
                                                         </button>

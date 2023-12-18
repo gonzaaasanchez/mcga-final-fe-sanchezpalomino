@@ -7,7 +7,13 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLoginButtonClick = () => {
-    navigate('/');
+    const userLogged = false;
+    if (userLogged) {
+      // logout popup
+     }
+    else {
+      navigate('/login');
+    }
   };
 
   return (

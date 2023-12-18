@@ -5,6 +5,7 @@ import Header from './header-footer/header';
 import Footer from './header-footer/footer';
 import ProductsList from './products';
 import ProductFormPage from './products_form';
+import LoginPage from './login';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<ProductsList />} />
             <Route path="/product/:id" element={<ProductFormPage />} />
             <Route path="/product/add" element={<ProductFormPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
         <Footer />
