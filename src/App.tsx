@@ -16,16 +16,14 @@ function App() {
         <main>
           <Routes>
             <Route path='/' element={<ProductsList />} />
-            <Route path='/product/add' element={
-              <ProtectedRoute userToken={'asd'}> <ProductFormPage /> </ProtectedRoute>
-            } />
-            <Route path='/product/:id' element={
-              <ProtectedRoute userToken={'asd'}> <ProductFormPage /> </ProtectedRoute>
-            } />
             <Route path='/auth' element={<AuthPage />} />
+            <Route element={<ProtectedRoute userToken='asdasd' />}>
+              <Route path='/product/add' element={<ProductFormPage />} />
+              <Route path='/product/:id' element={<ProductFormPage />} />
+            </Route>
           </Routes>
         </main>
-        <Footer /> 
+        <Footer />
       </>
     </BrowserRouter>
   );

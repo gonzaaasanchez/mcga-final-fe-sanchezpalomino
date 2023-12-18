@@ -30,6 +30,7 @@ const AuthPage = () => {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
+                    console.log(userCredential);
                     console.log(user);
                     showMenu();
                 })
