@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Inputs } from '../utils/types';
 import ConfirmationDialog from '../utils/dialog';
+import { userToken } from '../utils/auth_helper';
+
 import './products_form.css';
 
 const ProductFormPage: React.FC = () => {
@@ -25,6 +27,10 @@ const ProductFormPage: React.FC = () => {
         setDeleteDialogOpen(true);
     };
 
+    const handleDeleteCancel = () => {
+        setDeleteDialogOpen(false);
+    }
+
     const handleDeleteConfirm = () => {
         setDeleteDialogOpen(false);
         setIsLoading(true);
@@ -34,6 +40,7 @@ const ProductFormPage: React.FC = () => {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-Firebase-AppCheck': userToken(),
                 },
             })
             .then((response) => {
@@ -46,15 +53,11 @@ const ProductFormPage: React.FC = () => {
             })
             .catch((error) => {
                 console.error('Error deleting product: ', error);
-                setError('Error al borrar producto.');
+                setError(error.toString());
             })
             .finally(() => {
                 setIsLoading(false);
             })
-    }
-
-    const handleDeleteCancel = () => {
-        setDeleteDialogOpen(false);
     }
 
     const onSubmit = (data: Inputs) => {
@@ -65,6 +68,7 @@ const ProductFormPage: React.FC = () => {
                 method: isAddRoute ? 'POST' : 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-Firebase-AppCheck': userToken(),
                 },
                 body: JSON.stringify(data),
             })
@@ -78,7 +82,7 @@ const ProductFormPage: React.FC = () => {
             })
             .catch((error) => {
                 console.error(isAddRoute ? 'Error creating:' : 'Error updating:', error);
-                setError(isAddRoute ? 'Error al crear producto.' : 'Error al actualizar producto.');
+                setError(error.toString());
             })
             .finally(() => {
                 setIsLoading(false);
@@ -108,7 +112,7 @@ const ProductFormPage: React.FC = () => {
                 })
                 .catch((error) => {
                     console.error('Error fetching products:', error);
-                    setError('Error al consultar producto.');
+                    setError(error.toString());
                 })
                 .finally(() => {
                     setIsLoading(false);

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { userisLogged } from '../utils/auth_helper';
+import { userIsLogged } from '../utils/auth_helper';
 interface ProtectedRouteProps {
     children?: ReactNode;
     redirect?: string;
@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> =
     ({ children, redirect = '/auth' }) => {
-        if (userisLogged()) {
+        if (userIsLogged()) {
             return <Navigate to={redirect} />;
         }
         return children ? children : <Outlet />;

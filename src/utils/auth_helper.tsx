@@ -17,8 +17,12 @@ export const getFromLocalStorage = (key: string): any => {
     }
 };
 
-export const userisLogged = (): boolean => {
-    return getFromLocalStorage(accessTokenLocalStorageKey).trim().length === 0;
+export const userIsLogged = (): boolean => {
+    return userToken().trim().length === 0;
+};
+
+export const userToken = (): string => {
+    return getFromLocalStorage(accessTokenLocalStorageKey);
 };
 
 export const saveUserData = (user: User, token: string): any => {
@@ -31,4 +35,3 @@ export const cleanUserData = (): any => {
     saveToLocalStorage(userLocalStorageKey, '');
     saveToLocalStorage(accessTokenLocalStorageKey, '');
 };
-
