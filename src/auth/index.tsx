@@ -3,10 +3,10 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { auth } from '../utils/firebase/firebase';
 import { useNavigate } from 'react-router-dom'
 import '../App.css';
-import './login.css';
+import './auth.css';
 import ConfirmationDialog from '../utils/dialog';
 
-const LoginPage = () => {
+const AuthPage = () => {
     const navigate = useNavigate();
     const [isLoginFlow, setIsLoginFlow] = useState(true);
     const [email, setEmail] = useState('');
@@ -64,7 +64,7 @@ const LoginPage = () => {
 
     return (
         <>
-            <div className='login'>
+            <div className='auth'>
                 <h2>  {isLoginFlow ? 'Login' : 'Registro'}</h2>
 
                 <form>
@@ -127,4 +127,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default AuthPage

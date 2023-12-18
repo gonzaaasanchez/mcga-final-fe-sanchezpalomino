@@ -4,7 +4,7 @@ import Header from './header-footer/header';
 import Footer from './header-footer/footer';
 import ProductsList from './products';
 import ProductFormPage from './products_form';
-import LoginPage from './login';
+import AuthPage from './auth';
 import ProtectedRoute from './utils/protected_route';
 import './App.css';
 
@@ -22,7 +22,7 @@ function App() {
             <Route path='/product/:id' element={
               <ProtectedRoute userToken={'asd'}> <ProductFormPage /> </ProtectedRoute>
             } />
-            <Route path='/auth' element={<LoginPage />} />
+            <Route path='/auth' element={<AuthPage />} />
           </Routes>
         </main>
         <Footer /> 
