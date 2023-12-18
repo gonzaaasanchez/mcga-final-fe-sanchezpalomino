@@ -10,6 +10,10 @@ const Header = () => {
   const [userIsLogged, setUserIsLogged] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
+  const showHome = () => {
+    navigate('/', { replace: true })
+  }
+
   const handleButtonClick = () => {
     if (userIsLogged) {
       setIsLogoutDialogOpen(true);
@@ -48,6 +52,9 @@ const Header = () => {
   return (
     <>
       <header className='container'>
+        <button className="home-button" onClick={showHome}>
+          🏠
+        </button>
         <strong>MCGA TP Final - Sanchez Palomino</strong>
         <button
           className={`login-button ${userIsLogged ? 'logout-button' : ''}`}
