@@ -7,14 +7,14 @@ const ConfirmationDialog: React.FC<{
     cancelText?: String,
     onCancel?: () => void;
     confirmText?: String,
-    onConfirm?: () => void
+    onConfirm: () => void
 }> = ({
     isOpen,
     title,
     cancelText = 'No',
-    onCancel = () => {},
+    onCancel,
     confirmText = 'Sí',
-    onConfirm = () => {},
+    onConfirm = () => { },
 }) => {
         if (!isOpen) {
             return null;
@@ -25,7 +25,11 @@ const ConfirmationDialog: React.FC<{
                     <div className='confirmation-dialog-content'>
                         <p>{title}</p>
                         <div className='confirmation-dialog-buttons'>
-                            <button className='button button-error' onClick={() => onCancel()}>{cancelText}</button>
+                            {
+                                onCancel && (
+                                    <button className='button button-error' onClick={() => onCancel()}>{cancelText}</button>
+                                )
+                            }
                             <button className='button button-success' onClick={() => onConfirm()}>{confirmText}</button>
                         </div>
                     </div>
