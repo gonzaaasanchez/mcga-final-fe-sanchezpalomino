@@ -8,6 +8,7 @@ import ConfirmationDialog from '../utils/dialog';
 const Header = () => {
   const navigate = useNavigate();
   const [userIsLogged, setUserIsLogged] = useState(false);
+  const [userName, setUserName] = useState<string | null>(null);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   const showHome = () => {
@@ -40,6 +41,7 @@ const Header = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log('user', user)
+        setUserName(user.email);
         setUserIsLogged(true);
       } else {
         setUserIsLogged(false);
@@ -55,7 +57,10 @@ const Header = () => {
         <button className="home-button" onClick={showHome}>
           🏠
         </button>
-        <strong>MCGA TP Final - Sanchez Palomino</strong>
+        <div className='center'>
+          <strong>MCGA TP Final - Sanchez Palomino</strong>
+          <div className='user-info'>Usuario: { userIsLogged ? userName : 'no logueado'}</div>
+        </div>
         <button
           className={`login-button ${userIsLogged ? 'logout-button' : ''}`}
           onClick={handleButtonClick}>

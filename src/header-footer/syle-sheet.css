@@ -34,6 +34,11 @@
   background-color: rgb(203, 27, 27);
 }
 
+.user-info {
+  color: gray;
+  padding-top: 10px;
+}
+
 /* @media (prefers-color-scheme: light) {
   .container {
     background-color: #191717;
