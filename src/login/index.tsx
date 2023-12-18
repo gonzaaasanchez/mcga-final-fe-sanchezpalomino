@@ -105,7 +105,7 @@ const LoginPage = () => {
 
                 <p >
                     {isLoginFlow ? '¿Aún no tenés cuenta?' : '¿Ya tenés cuenta?'}
-                    <button type='button' className='auth-button' onClick={switchAuthFlow}>
+                    <button type='button' className='underlined-button' onClick={switchAuthFlow}>
                         {isLoginFlow ? 'Registrarme' : 'Loguearme'}
                     </button>
                 </p>
