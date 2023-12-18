@@ -4,17 +4,17 @@ import './dialog.css';
 const ConfirmationDialog: React.FC<{
     isOpen: boolean;
     title: String,
-    cancelText: String,
-    onCancel: () => void;
-    confirmText: String,
-    onConfirm: () => void
+    cancelText?: String,
+    onCancel?: () => void;
+    confirmText?: String,
+    onConfirm?: () => void
 }> = ({
     isOpen,
     title,
-    cancelText,
-    onCancel,
-    confirmText,
-    onConfirm,
+    cancelText = 'No',
+    onCancel = () => {},
+    confirmText = 'Sí',
+    onConfirm = () => {},
 }) => {
         if (!isOpen) {
             return null;
