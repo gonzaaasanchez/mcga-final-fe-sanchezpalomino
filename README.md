@@ -4,6 +4,10 @@
 - Sanchez Palomino
 
 ### Deploy
+Available in
+- Render: https://mcga-final-sanchez-palomino.onrender.com/
+- Github pages: https://gonzaaasanchez.github.io/mcga-final-fe-sanchezpalomino
+
 Based in https://github.com/gitname/react-gh-pages
 ```sh
 npm run predeploy
