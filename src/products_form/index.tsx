@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Inputs } from '../utils/types';
 import ConfirmationDialog from '../utils/dialog';
 import { userToken } from '../utils/auth_helper';
-
+import { baseURL } from '../utils/service';
 import './products_form.css';
 
 const ProductFormPage: React.FC = () => {
@@ -35,7 +35,7 @@ const ProductFormPage: React.FC = () => {
         setDeleteDialogOpen(false);
         setIsLoading(true);
         setLoadingMessage('Borrando producto...');
-        fetch(`http://localhost:3000/products/${id}`,
+        fetch(`${baseURL()}/products/${id}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -63,7 +63,7 @@ const ProductFormPage: React.FC = () => {
     const onSubmit = (data: Inputs) => {
         setIsLoading(true);
         setLoadingMessage('Guardando producto...');
-        fetch(`http://localhost:3000/products${isAddRoute ? '' : `/${id}`}`,
+        fetch(`${baseURL()}/products${isAddRoute ? '' : `/${id}`}`,
             {
                 method: isAddRoute ? 'POST' : 'PUT',
                 headers: {
@@ -97,7 +97,7 @@ const ProductFormPage: React.FC = () => {
         if (!isAddRoute && id) {
             setIsLoading(true);
             setLoadingMessage('Cargando producto...');
-            fetch(`http://localhost:3000/products/${id}`)
+            fetch(`${baseURL()}/products/${id}`)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);

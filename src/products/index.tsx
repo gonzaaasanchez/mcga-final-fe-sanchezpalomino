@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Product } from './types';
+import { baseURL } from '../utils/service';
 import './products.css';
 
 const App: React.FC = () => {
@@ -10,7 +11,7 @@ const App: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3000/products')
+        fetch(`${baseURL()}/products`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);

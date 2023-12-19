@@ -1,16 +1,15 @@
 {
-  "name": "mcga-final-grupo3-fe",
+  "name": "mcga-final-sanchez-palomino",
+  "description": "Frontend Project for MCGA Final TP - Sanchez Palomino",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gonzaaasanchez.github.io/mcga-final-fe-sanchezpalomino",
+  "homepage": "./",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "firebase": "^10.7.1",
@@ -29,7 +28,6 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "gh-pages": "^6.1.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }
