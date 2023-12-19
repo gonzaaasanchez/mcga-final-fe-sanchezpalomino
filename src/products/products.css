@@ -3,8 +3,7 @@
   border-spacing: 10 10px;
 }
 
-th,
-td {
+th, td {
   padding: 10px;
   border: 1px solid #ccc;
 }
@@ -36,8 +35,8 @@ strong {
 }
 
 @media (max-width: 599px) {
-  th,
-  td {
+  th, td, .price{
     display: block;
+    text-align: center;
   }
 }
