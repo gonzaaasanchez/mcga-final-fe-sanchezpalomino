@@ -6,7 +6,7 @@ import ProductsList from './products';
 import ProductFormPage from './products_form';
 import AuthPage from './auth';
 import ProtectedRoute from './utils/protected_route';
-
+import NotFoundASD from './utils/not-found';
 import './App.css';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Header />
         <main>
           <Routes>
+          <Route path='*' element={<NotFoundASD />} />
             <Route path='/' element={<ProductsList />} />
             <Route path='/auth' element={<AuthPage />} />
             <Route element={<ProtectedRoute />}>
