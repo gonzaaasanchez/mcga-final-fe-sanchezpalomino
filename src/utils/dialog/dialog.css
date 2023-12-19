@@ -27,15 +27,3 @@
   display: flex;
   gap: 10px;
 }
-
-/* @media (prefers-color-scheme: light) {
-  .confirmation-dialog {
-    background: rgb(34, 34, 34);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .confirmation-dialog {
-    background: white;
-  }
-} */

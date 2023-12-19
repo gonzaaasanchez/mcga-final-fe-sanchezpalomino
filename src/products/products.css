@@ -25,7 +25,6 @@ strong {
   margin: 0 auto;
 }
 
-/* Responsive layout adjustments */
 @media (min-width: 600px) {
   li {
     display: flex;
