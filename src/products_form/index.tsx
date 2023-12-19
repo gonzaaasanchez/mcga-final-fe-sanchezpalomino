@@ -40,7 +40,7 @@ const ProductFormPage: React.FC = () => {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Firebase-AppCheck': userToken(),
+                    'Authorization': userToken(),
                 },
             })
             .then((response) => {
@@ -68,7 +68,7 @@ const ProductFormPage: React.FC = () => {
                 method: isAddRoute ? 'POST' : 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Firebase-AppCheck': userToken(),
+                    'Authorization': userToken(),
                 },
                 body: JSON.stringify(data),
             })

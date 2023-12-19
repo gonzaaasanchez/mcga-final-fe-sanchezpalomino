@@ -20,6 +20,17 @@ const AuthPage = () => {
         navigate('/', { replace: true });
     }
 
+    const getUserTokenID = (user: User) => {
+        user.getIdToken(true).then(function (idToken) {
+            console.log('idToken', idToken);
+            saveUserData(user, idToken);
+        }).catch((_) => {
+            setError('Hubo un error al loguear el usuario');
+        }).finally(() => {
+            showMenu();
+        });
+    }
+
     const onLogin = (e: { preventDefault: () => void; }) => {
         if (isLoading) {
             return;
@@ -30,16 +41,13 @@ const AuthPage = () => {
         if (isLoginFlow) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    const user: User = userCredential.user;
                     console.log('userCredential', userCredential);
-                    console.log('refreshToken', user.refreshToken);
-                    saveUserData(user,  user.refreshToken);
-                    showMenu();
+                    getUserTokenID(userCredential.user);
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
                     console.log(errorMessage)
-                    setError('Hubo un error al loguear el usuaro');
+                    setError('Hubo un error al loguear el usuario');
                 })
                 .finally(() => {
                     setIsLoading(false);
