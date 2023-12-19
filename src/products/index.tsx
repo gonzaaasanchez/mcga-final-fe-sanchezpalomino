@@ -84,7 +84,7 @@ const App: React.FC = () => {
                                                         <td >{product.category}</td>
                                                         <td>{product.description}</td>
                                                         <td className='price'>${product.price}</td>
-                                                        <td>
+                                                        <td className='button-td'>
                                                             <button
                                                                 className='button button-normal'
                                                                 onClick={() => showProductEdition(product.id)}>

@@ -18,6 +18,10 @@ td {
   text-align: left;
 }
 
+.button-td {
+  text-align: center;
+}
+
 strong {
   display: block;
 }
