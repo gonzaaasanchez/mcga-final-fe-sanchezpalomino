@@ -241,7 +241,7 @@ const ProductFormPage: React.FC = () => {
                                     )
                                 }
                                 <button className='button button-success' type='submit'>
-                                    {isAddRoute ? 'Agregar' : 'Editar'}
+                                    {isAddRoute ? 'Crear' : 'Guardar'}
                                 </button>
                             </div>
 
