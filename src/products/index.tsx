@@ -67,29 +67,34 @@ const App: React.FC = () => {
                                         <div className='information'>
                                             <span >Total: {products.length}</span>
                                         </div>
-                                        <ul>
-                                            <li >
-                                                <strong>Nombre</strong>
-                                                <strong>Categoría</strong>
-                                                <strong>Descripción</strong>
-                                                <strong>Precio</strong>
-                                                <strong>Detalle</strong>
-                                            </li>
-                                            {
-                                                products.map((product) => (
-                                                    <li key={product.id}>
-                                                        <strong>{product.name}</strong>
-                                                        <div className='category'>{product.category}</div>
-                                                        <div className='description'>{product.description}</div>
-                                                        <div className='price'>${product.price}</div>
-                                                        <button className='button button-normal'
-                                                            onClick={() => showProductEdition(product.id)}>
-                                                            Editar
-                                                        </button>
-                                                    </li>
-                                                ))
-                                            }
-                                        </ul>
+                                        <table className="products-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Categoría</th>
+                                                    <th>Descripción</th>
+                                                    <th>Precio</th>
+                                                    <th>Detalle</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {products.map((product) => (
+                                                    <tr key={product.id}>
+                                                        <td><strong>{product.name}</strong></td>
+                                                        <td >{product.category}</td>
+                                                        <td>{product.description}</td>
+                                                        <td className='price'>${product.price}</td>
+                                                        <td>
+                                                            <button
+                                                                className='button button-normal'
+                                                                onClick={() => showProductEdition(product.id)}>
+                                                                Editar
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
                                     </>
                                 )
                             }
