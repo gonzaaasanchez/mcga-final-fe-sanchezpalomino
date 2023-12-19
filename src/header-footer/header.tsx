@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../utils/firebase/firebase';
-import { cleanUserData } from '../utils/auth_helper';
-import ConfirmationDialog from '../utils/dialog';
+import { auth } from '../utils/firebase/firebase.ts';
+import { cleanUserData } from '../utils/auth_helper.tsx';
+import ConfirmationDialog from '../utils/dialog/index.tsx';
 import './syle-sheet.css';
 
 const Header = () => {

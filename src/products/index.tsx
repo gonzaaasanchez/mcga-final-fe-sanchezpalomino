@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Product } from './types';
-import { baseURL } from '../utils/service';
+import { Product } from './types.ts';
+import { baseURL } from '../utils/service.ts';
 import './products.css';
 
 const App: React.FC = () => {

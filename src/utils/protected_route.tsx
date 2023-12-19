@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { userIsLogged } from '../utils/auth_helper';
+import { userIsLogged } from '../utils/auth_helper.tsx';
 interface ProtectedRouteProps {
     children?: ReactNode;
     redirect?: string;

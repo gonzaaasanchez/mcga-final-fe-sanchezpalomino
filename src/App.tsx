@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
-import Header from './header-footer/header';
-import Footer from './header-footer/footer';
-import ProductsList from './products';
-import ProductFormPage from './products_form';
-import AuthPage from './auth';
-import ProtectedRoute from './utils/protected_route';
-import NotFoundPage from './utils/not-found';
+import Header from './header-footer/header.tsx';
+import Footer from './header-footer/footer.tsx';
+import ProductsList from './products/index.tsx';
+import ProductFormPage from './products_form/index.tsx';
+import AuthPage from './auth/index.tsx';
+import ProtectedRoute from './utils/protected_route.tsx';
+import NotFoundPage from './utils/not-found.tsx';
 import './App.css';
 
 function App() {

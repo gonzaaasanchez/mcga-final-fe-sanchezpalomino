@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Inputs } from '../utils/types';
-import ConfirmationDialog from '../utils/dialog';
-import { userToken } from '../utils/auth_helper';
-import { baseURL } from '../utils/service';
+import { Inputs } from '../utils/types.ts';
+import ConfirmationDialog from '../utils/dialog/index.tsx';
+import { userToken } from '../utils/auth_helper.tsx';
+import { baseURL } from '../utils/service.ts';
 import './products_form.css';
 
 const ProductFormPage: React.FC = () => {

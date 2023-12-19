@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../utils/firebase/firebase';
+import { auth } from '../utils/firebase/firebase.ts';
 import { useNavigate } from 'react-router-dom'
-import ConfirmationDialog from '../utils/dialog';
-import { saveUserData } from '../utils/auth_helper';
+import ConfirmationDialog from '../utils/dialog/index.tsx';
+import { saveUserData } from '../utils/auth_helper.tsx';
 import '../App.css';
 import './auth.css';
 
